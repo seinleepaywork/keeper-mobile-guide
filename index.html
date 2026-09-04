@@ -694,6 +694,12 @@ footer.foot{
                 <b>「통과」로 보고한 헤더가 182px 이하에서 붕괴</b>했다. 폭은 사용자가 창을 끌면 연속이다</li>
               <li>같은 행 컨트롤의 <b>높이 · 상하 끝 일치</b>(height·top·bottom 각 1개 값) — 여러 줄로 자란 입력창만 예외, 그때도 bottom은 1개 값.
                 <code class="tok">audit-fill.js</code>의 <code class="tok">step</code>이 센다</li>
+              <li>채움 버튼은 <b>예외 없이 <code class="tok">#072436</code> + 흰 텍스트</b> — 중립색(<code class="tok">#FFFFFF</code>
+                <code class="tok">#F9FAFB</code> <code class="tok">#F3F4F6</code> <code class="tok">#E5E7EB</code> · 투명)이 아닌 배경을 가진 버튼은
+                모두 CTA 다. 파괴적 행동(<code class="tok">#FF5277</code> + Navy 텍스트)만 예외이며 §1.2 확인 모달과 함께만 쓴다
+                (<code class="tok">audit-fill.js</code> <code class="tok">cta</code>).
+                <b>색은 탭이 화면에 있을 때 잰다</b> — 배경 탭에서는 <code class="tok">transition</code> 이 멈춰
+                「흰 배경에 흰 글자」로 읽힌다(실측 오검출 3건)</li>
               <li>배경 채움 버튼이 <b>화면당 1개</b> — 흐름을 끝까지 돌리며 <b>60ms 간격 샘플링</b>으로 최대값 확인</li>
               <li>처리 끝난 위젯의 <code class="tok">disabled</code> 버튼 <b>0개</b></li>
               <li>빈 상태에 <b>스피너 0개</b> · 3초 미만 구간에 <b>진행 로그 0개</b></li>
@@ -955,6 +961,9 @@ footer.foot{
                   <li>§3 상태 색(blue · purple · teal · emerald)을 <b class="keep">버튼에 재사용</b>하기</li>
                   <li>브랜드 정의서에 없는 색을 새로 만들기</li>
                   <li><b>선택 상태·토글·태그에 Navy 채움</b>을 쓰기 — 주 CTA와 위계가 같아진다</li>
+                  <li><b>주 행동을 흰 배경 + Navy 텍스트(보조 행동 형태)로 그리기</b> — 그 화면에서 앞으로 가는 행동이
+                    보조 행동과 같은 모양이 된다. 실측: 여러 개 고르는 질문의 확정 버튼이 그 화면의 유일한 전진 행동인데
+                    고스트로 그려져 있었다. <b>CTA 는 예외 없이 <code class="tok">#072436</code> 채움 + 흰 텍스트</b>다</li>
                   <li><b>사이드바·레일·헤더 같은 넓은 면을 브랜드 원색으로 채우기.</b> 원색은 <b>버튼·마커·아이콘 같은 작은 면</b>에만 쓴다</li>
                 </ul>
               </div>
@@ -1801,6 +1810,9 @@ setAmount(value.replace(/[^0-9]/g, ''))
 - Badges &amp; Tags: Always set `flex-shrink: 0; white-space: nowrap;` to prevent layout collapse.
 - Light theme ONLY. Declare `color-scheme: light`. Never add a dark palette or `prefers-color-scheme` block.
 - Brand colors: KeeperAI Navy `#072436` (PANTONE 289 C) and KeeperAI Green `#10DE52` (PANTONE 2270 C).
+- <span class="no">NEVER draw the primary action as a ghost button</span> (white fill + Navy text). That is the
+  secondary-action shape; using it for the one forward action on a screen erases the hierarchy. Measured: a multi-select
+  question's confirm button — the only way forward on that screen — was drawn as a ghost.
 - Primary CTA is <span class="no">ALWAYS</span> Navy `#072436` fill with white text. Focus ring is 2px Navy — never the
   browser default blue.
 - <span class="no">NEVER</span> use KeeperAI Green as a button background. The brand defines Green as
