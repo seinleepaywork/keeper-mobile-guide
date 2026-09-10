@@ -584,7 +584,7 @@ footer.foot{
           <li><b>OPEN-13</b> 브랜드 팔레트 밖 색 넷 — 점수 주황 <code class="tok">#F5A623</code> · 수신 파랑 <code class="tok">#0074FF</code> · 수준 라벨의 파랑/보라 · 액센트 녹색 <code class="tok">#00CC46</code>(글자로 쓰면 2.16:1).</li>
           <li><b>OPEN-14</b> 세그먼트 선택칩이 <code class="tok">#28272F</code> 채움 + 흰 글자 — 선택 상태에 진한 채움을 금지한 §1.6과 충돌.</li>
           <li><b>OPEN-15</b> 다섯 축 이름이 PRD의 「구매 의향」과 달리 「수요 의향」이다.</li>
-          <li><b>OPEN-16</b> 가로 모드 · 키보드가 올라온 뒤의 뷰포트 · 바텀시트가 피그마에 없다. 정밀 길이 재측정도 여기.</li>
+          <li><b>OPEN-16</b> 가로 모드 · 태블릿 · 바텀시트가 피그마에 없다. 키보드 대응은 2026-09-10 동작 규칙으로 확정했고, 정밀 길이 재측정만 여기 남긴다.</li>
         </ul>
       </article>
     </section>
@@ -646,6 +646,7 @@ footer.foot{
               <li><b>통화 상태 확인</b> — 통화 내역 행 · 요약 카드 · To Do 가 관여하면 §3 표에서 상태별 표시와 주 행동을 그대로 가져온다. 색을 새로 만들지 않는다.</li>
               <li><b>§1 공통 헌법 적용</b> — 10개 조항을 전부 적용한다. 특히 <b>§1.2 모달 내부 인풋 금지</b>는 대체안(인라인 편집 · 풀스크린 시트 · 독립 화면) 중 하나를 먼저 고른 뒤 만든다.</li>
               <li><b>§5 금지 패턴 선탑재</b> — 금액 입력·배지·모달·비동기 버튼·긴 텍스트가 있으면 해당 방지책을 <b>작성 단계에 넣는다.</b> 리뷰에서 잡는 게 아니다.</li>
+              <li><b>입력 화면 상태표 작성</b> — 하단 입력창·고정 패널이 있으면 <b>키보드 닫힘/열림 × 패널 최소화/확장 × 빈 입력/여러 줄 입력</b>을 구현 전에 적는다. 어느 상태에서도 입력창과 현재 작업이 동시에 보여야 한다.</li>
               <li><b>완료 전 자기점검</b> — §0.4 체크리스트를 실측으로 확인한다. 눈대중은 통과가 아니다.</li>
             </ol>
           </div>
@@ -730,6 +731,8 @@ footer.foot{
               <li>처리 끝난 위젯의 <code class="tok">disabled</code> 버튼 <b>0개</b></li>
               <li>빈 상태에 <b>스피너 0개</b> · 3초 미만 구간에 <b>진행 로그 0개</b></li>
               <li>본문은 <b>1열</b>, 좌우 여백 <b>20pt</b>(실측 20/18). 하단 고정 CTA는 프레임 하단에서 <b>40pt</b>(안전영역 34 + 6, 실측) · 좌우 20pt</li>
+              <li><b>키보드 상태 실기기 검수</b> — 닫힘/열림 · 빈 입력/여러 줄 입력 · 패널 최소화/확장 · 화면 탭 전환을 모두 거친다. <b>입력창, 전송 행동, 현재 포커스, 마지막 콘텐츠가 키보드나 고정 패널에 가려지는 상태 0건</b></li>
+              <li><b>제품 밖 플로팅 UI 0개</b> — Expo 개발 메뉴, 검사 도구, 접근성 보조 버튼, OS 오버레이는 제품 컴포넌트로 복제하지 않는다. 릴리스 빌드와 최종 검수 캡처에는 앱이 만든 디버그 버튼·도구 패널이 없어야 한다</li>
               <li>새 색 짝을 썼으면 <b>명도비 계산값</b>을 보고에 적음</li>
               <li>첫 화면 빈 공간 <b>40% 이하</b></li>
               <li>그룹 간 간격 ≥ 그룹 내 간격 <b>×2</b></li>
@@ -1454,8 +1457,8 @@ footer.foot{
                 
               <li><b>1열 · 좌우 20pt · 카드 라운드 16pt(리스트) / 12pt(체크리스트) / 20pt(카드 모달).</b> 피그마 실측(±1.5pt).
                 <b>안전영역</b>: 상단 상태바 아래에서 콘텐츠 시작, 하단 홈 인디케이터 34pt 위로 고정 요소를 올린다 — 하단 고정 CTA는 프레임 하단에서 <b>40pt</b>,
-                하단 탭바 흰 면은 <b>53pt</b>(탭 + 인디케이터 여백, 실측). <b>키보드가 올라온 뒤의 뷰포트</b>는 피그마에 없어 미정(OPEN-16) —
-                입력 화면을 그리기 전에 먼저 정한다.</li>
+                하단 탭바 흰 면은 <b>53pt</b>(탭 + 인디케이터 여백, 실측). 키보드가 올라오면 입력 영역은 <b>줄어든 가시 뷰포트의 하단</b>에 붙고,
+                스크롤 본문은 입력 영역 높이만큼 하단 여백을 확보한다. 키보드 위에 입력창을 절대 좌표로 겹쳐 놓지 않는다.</li>
 </ul>
               </div>
               <div class="dd-col dd-yes">
@@ -1657,7 +1660,7 @@ footer.foot{
             <li><span class="lbl">카드 모달</span><span>OS 화면(통화 종료 · 잠금) 위 <b>한 장</b> · 라운드 20pt. 대상(번호/이름 + 태그) → 질문 한 줄 + 부제 → <b>주 행동 하나</b> → 보조 하나 → 캡션(「정리되면 알림으로 알려드려요 (약 1분)」). §1.2의 유일한 예외</span></li>
             <li><span class="lbl">통화 중</span><span>다크 — OS 통화 화면을 따른다. 회사 · 이름 · 번호 · 태그(거래처 · 고객사 · 처음 받는 전화) · 최근 지표 · <b>「AI 최근 요약」 카드</b>(제목 · 날짜 · 불릿 3) · 메모 · 「통화 어시스트」 칩. 행동은 없다 — 읽기만</span></li>
             <li><span class="lbl">풀스크린 시트</span><span>좌상단 <code class="tok">×</code> · 5점 척도 크게 → <b>사장님 말 제목</b> → 「AI 추천 행동」 카드 → 다섯 축(수요 의향 · 구체성 · 시점 · 결정권 · 규모) 각 <b>인용 + 해석 + 수준 라벨</b>. 세로 스크롤. 안에 카드 모달을 다시 띄우지 않는다</span></li>
-            <li><span class="lbl">없는 것</span><span>바텀시트 · 가로 모드 · 태블릿 · 키보드가 올라온 뒤의 뷰포트 — 피그마에 없다(OPEN-16). 만들지 않는다</span></li>
+            <li><span class="lbl">없는 것</span><span>바텀시트 · 가로 모드 · 태블릿 — 피그마에 없다(OPEN-16). 만들지 않는다. 키보드 대응은 화면 패턴이 아니라 모든 입력 화면의 공통 동작이다</span></li>
             <li><span class="lbl">적용</span><span>통화 중 · 통화 종료 · 판단 근거</span></li>
           </ul>
         </article>
@@ -1673,7 +1676,9 @@ footer.foot{
             <li><span class="lbl">하단 CTA</span><span>높이 <b>51pt</b> · 프레임 하단에서 <b>40pt</b> · 좌우 20pt. 상세형에만. 재생바와 자리를 다툰다 — 하나만</span></li>
             <li><span class="lbl">안전영역</span><span>홈 인디케이터 <b>34pt</b> 위로 고정 요소를 올린다. 스크롤 콘텐츠의 마지막 항목이 고정 요소 밑에 묻히지 않게 하단 여백을 고정 요소 높이만큼 준다</span></li>
             <li><span class="lbl">규칙</span><span><b>한 화면에 하단 고정 요소는 하나</b> — 탭바(목록형) 또는 CTA/재생바(상세형). 둘이 겹치는 화면은 패턴을 잘못 고른 것이다</span></li>
-            <li><span class="lbl">미정</span><span>키보드가 올라온 뒤 고정 요소의 위치 · 가로 모드(OPEN-16)</span></li>
+            <li><span class="lbl">키보드</span><span>입력 컴포저는 <b>키보드를 제외한 가시 뷰포트 하단</b>에 붙는다. 본문은 남은 높이 안에서 스크롤하고 마지막 항목이 컴포저 뒤에 숨지 않게 하단 인셋을 준다. 컴포저를 화면 전체 기준 <code class="tok">absolute bottom</code>으로 두지 않는다</span></li>
+            <li><span class="lbl">검수 상태</span><span>키보드 닫힘/열림 · 빈 입력/여러 줄 입력 · 패널 최소화/확장 · 탭 전환. 각 상태에서 입력창과 현재 작업이 함께 보이고 포커스가 유지되어야 한다</span></li>
+            <li><span class="lbl">미정</span><span>가로 모드 · 태블릿(OPEN-16)</span></li>
           </ul>
         </article>
 
@@ -1797,7 +1802,7 @@ footer.foot{
             <li><b>의미 색 넷</b> — 점수 주황 · 수신 파랑 · 수준 라벨 · 액센트 녹색(OPEN-13). 보조 글자 <code class="tok">#939397</code>는 3.06:1로 본문 크기에서 못 쓴다.</li>
             <li><b>선택칩 진한 채움</b> — <code class="tok">#28272F</code> + 흰 글자. §1.6 「선택 상태 채움 금지」와 충돌(OPEN-14).</li>
             <li><b>축 이름</b> — 피그마 「수요 의향」 vs PRD 「구매 의향」(OPEN-15). 한 이름으로.</li>
-            <li><b>없는 화면</b> — 빈 · 로딩 · 에러 · 키보드 · 가로 · 부재중의 행동 · 「나중에」 이후 재요청(OPEN-16). §1.8 값은 웹 승계다.</li>
+            <li><b>없는 화면</b> — 빈 · 로딩 · 에러 · 가로 · 부재중의 행동 · 「나중에」 이후 재요청(OPEN-16). §1.8 값은 웹 승계다. 키보드는 별도 화면이 아니라 §2의 공통 동작 규칙으로 검수한다.</li>
           </ul>
         </article>
       </div>
@@ -1807,7 +1812,7 @@ footer.foot{
     <section class="sec" id="s5">
       <div class="sec-head">
         <h2><span class="sec-no">§5</span>금지 패턴<span class="tipwrap"><button class="tip" type="button" aria-describedby="tip-5"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.3"/><path d="M6.3 6.1c0-.9.8-1.6 1.7-1.6s1.7.7 1.7 1.6c0 .8-.5 1.1-1.1 1.5-.4.3-.6.6-.6 1.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="11.3" r=".85" fill="currentColor"/></svg><span class="sr">도움말</span></button><span class="tip-pop" role="tooltip" id="tip-5">작성 단계에서 방어 코드를 넣는다. 리뷰에서 발견하면 이미 늦다.</span></span></h2>
-        <p class="sec-sub">아래 5개 패턴은 작성 시점에 방어 코드를 넣는다. 리뷰에서 잡는 것이 아니다. <b>다섯 건 모두 웹에서 났고, 모바일에서 같은 자리를 짚어 옮겨 적었다.</b> 모바일 자체 기록은 아직 없다 — 생기면 여기에 쌓는다.</p>
+        <p class="sec-sub">아래 7개 패턴은 작성 시점에 방어 코드를 넣는다. 리뷰에서 잡는 것이 아니다. 앞의 다섯 건은 웹에서, 뒤의 두 건은 모바일 실기기 검수에서 확인했다.</p>
       </div>
 
       <div class="stack">
@@ -1859,6 +1864,24 @@ setAmount(value.replace(/[^0-9]/g, ''))
           </div>
           <div class="inc-rows">
             <div class="inc-row guard"><span class="lbl">방지책</span><p>모든 텍스트 엘리먼트에 <code class="tok">break-keep</code>을 공통 적용한다. 예외는 코드·URL 블록뿐.</p></div>
+          </div>
+        </article>
+
+        <article class="card inc">
+          <div class="inc-top">
+            <h3><span class="inc-no">금지 #06</span>키보드가 하단 입력창과 대화 내용을 덮음</h3>
+          </div>
+          <div class="inc-rows">
+            <div class="inc-row guard"><span class="lbl">방지책</span><p>하단 입력 UI는 <b>키보드 회피 레이아웃 안에서 일반 흐름으로 배치</b>한다. 키보드 높이만큼 화면을 줄이고, 스크롤 본문에는 컴포저 높이만큼 하단 인셋을 준다. 화면 전체 기준 <code class="tok">position:absolute; bottom:0</code>은 금지한다. Android는 창 <code class="tok">resize</code>, iOS는 안전영역을 포함한 키보드 회피를 적용하고, §0.4 상태표를 실기기에서 전부 확인한다.</p></div>
+          </div>
+        </article>
+
+        <article class="card inc">
+          <div class="inc-top">
+            <h3><span class="inc-no">금지 #07</span>개발 도구·시스템 오버레이를 제품 UI로 오인하거나 출하</h3>
+          </div>
+          <div class="inc-rows">
+            <div class="inc-row guard"><span class="lbl">방지책</span><p>Expo 개발 메뉴, 검사 도구, 접근성 보조 버튼, OS 플로팅 오버레이는 <b>디자인 레퍼런스가 아니다.</b> 앱 코드에 있는 디버그 진입점은 릴리스 빌드에서 렌더하지 않고, 최종 검수 캡처는 앱이 만든 플로팅 도구가 0개인 상태에서 남긴다. 외부 오버레이가 보이면 앱 결함과 분리해 기록한다.</p></div>
           </div>
         </article>
 
@@ -2054,6 +2077,14 @@ setAmount(value.replace(/[^0-9]/g, ''))
 - Currency inputs must safely strip commas before numeric parsing to prevent `NaN` bugs.
 - API submission buttons MUST implement debounce and display loading spinners with `disabled` states.
 - Any multi-field input screen must auto-save a local draft.
+- A bottom composer MUST live inside the keyboard-avoiding layout flow. Resize to the visible viewport, reserve
+  scroll-bottom inset equal to the composer, and include the safe area. <span class="no">NEVER</span> pin an input with
+  screen-level `position:absolute; bottom:0`. On Android use window resize; on iOS use keyboard avoidance with safe area.
+- Verify on a real device: keyboard closed/open × empty/multiline input × panel minimized/expanded × tab switch.
+  The composer, send action, focused field and last content item must remain visible in every state.
+- Expo/dev tools, inspector controls, accessibility utilities and OS floating overlays are <span class="no">not product UI</span>.
+  Never reproduce them from a screenshot. Render no app-owned debug entry points in release builds or final QA captures;
+  record unavoidable external overlays separately from app defects.
 
 <span class="dim">&gt; 아래 6·7절은 원문 룰셋 블록에 없던 확장이다. 본 문서 §3·§2(피그마 실측)에서 파생했다.</span>
 
@@ -2246,7 +2277,8 @@ setAmount(value.replace(/[^0-9]/g, ''))
 
         <div class="open-item">
           <div class="open-head"><h3><span class="open-no">OPEN-16</span>피그마에 없어 정하지 못한 것 · 정밀 재측정</h3><span class="badge badge-hard">자료 필요</span></div>
-          <p>가로 모드 · 태블릿 · 키보드가 올라온 뒤의 뷰포트 · 바텀시트 · 빈 상태 · 로딩 · 에러 화면이 피그마에 없다. 있으면 그리기 전에 규격을 먼저 정한다.
+          <p>가로 모드 · 태블릿 · 바텀시트 · 빈 상태 · 로딩 · 에러 화면이 피그마에 없다. 있으면 그리기 전에 규격을 먼저 정한다.
+            <b>키보드가 올라온 뒤의 뷰포트는 2026-09-10 미결에서 제외했다.</b> 정확한 높이를 추측하는 대신 §2의 가시 뷰포트·스크롤 인셋 규칙과 §0.4 상태표로 동작을 확정한다.
             그리고 이 문서의 길이값(행 72/95pt · CTA 51pt · 탭바 53pt · 여백 20pt)은 4096px 렌더 근사값(±1.5pt)이다 —
             노드 접근이 응답 크기 초과로 막혀 화면 단위 링크로 다시 재야 한다.</p>
         </div>
