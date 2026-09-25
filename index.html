@@ -741,7 +741,7 @@ footer.foot{
               <li>넓은 면(탭바·헤더)에 브랜드 원색 채움 0곳</b></li>
               <li>화면 문구에 <b>대시(<code class="tok">—</code> <code class="tok">--</code>) 0개</b></li>
               <li>라벨 앞 <b>장식 도형 0개</b> · 제목 위 <b>라벨(eyebrow) 0개</b></li>
-              <li><b>삭제 테스트</b> — 화면을 설명하는 문구(개수 세기 · 옆 버튼 되풀이 · 같은 화면 안 복제) <b>0개</b>. 지워서 무엇을 모르게 되는지 한 문장으로 못 말하면 지운 채로 둔다(§1.10)</li>
+              <li><b>삭제 테스트</b> — 화면을 설명하는 문구(개수 세기 · 옆 버튼 되풀이 · 같은 화면 안 복제 · 가운뎃점으로 덧붙인 조각) <b>0개</b>. 지워서 무엇을 모르게 되는지 한 문장으로 못 말하면 지운 채로 둔다(§1.10)</li>
               <li>한글에 <b>양수 <code class="tok">letter-spacing</code> 0곳</b></li>
               <li>짧은 의미 단위(<b>≤14자</b>)가 줄바꿈으로 쪼개지지 않음</li>
               <li>트랙이 둘이면 <b>단계 이름이 1:1 대응</b> — 대응 없는 단계 <b>0개</b>. 두 줄로 나란히 적어 확인한다</li>
@@ -1596,10 +1596,29 @@ footer.foot{
                 </ul>
               </div>
             </div>
+            <p class="prose"><strong>가운뎃점으로 필요 없는 조각을 덧붙이지 않는다.</strong> 가운뎃점을 금지하는 규칙이 아니다 — <b>잇는 조각이 모두 필요할 때만</b> 쓴다.
+              가운뎃점 뒤에 붙인 조각도 위의 삭제 테스트를 거친다. 지워도 잃는 정보가 없으면 가운뎃점과 함께 지운다(2026-09-25 사용자 지시).</p>
+            <div class="dd">
+              <div class="dd-col dd-no">
+                <span class="lbl">Forbidden</span>
+                <ul>
+                  <li><b>키퍼 AI 추천 · 지금 먼저 할 일</b> — 화면 제목(키퍼 AI)과 카드 자체가 이미 말한다</li>
+                  <li><b>2번 전화했어요 · 아직 회신 전</b> — 카드의 <code class="tok">문자 초안 보기</code>가 이미 말한다</li>
+                </ul>
+              </div>
+              <div class="dd-col dd-yes">
+                <span class="lbl">Do this</span>
+                <ul>
+                  <li><b>지금 먼저 할 일</b></li>
+                  <li><b>2번 전화했어요</b></li>
+                  <li><b>대성식자재 · 식자재 대량 납품</b> — 두 조각이 모두 필요하면 가운뎃점을 그대로 쓴다</li>
+                </ul>
+              </div>
+            </div>
             <ul class="bullets">
               <li><b>버튼에는 눌렀을 때 일어나는 일을 쓴다.</b> 단계 번호나 다음 화면 이름을 덧붙이지 않는다 — 그건 헤더의 「현재 N/M 단계」와 뒤로 가기가 이미 보여준다.</li>
               <li><b>버튼 문구와 결과 토스트의 말이 같아야 한다.</b> <code class="tok">발송하기</code> 를 눌렀으면 토스트는 <code class="tok">발송했습니다</code> 다(§1.1).</li>
-              <li>나열·한정에는 가운뎃점 <code class="tok">·</code> 을 쓴다. 대시는 쓰지 않는다.</li>
+              <li>나열·한정에는 가운뎃점 <code class="tok">·</code> 을 쓴다. 대시는 쓰지 않는다. <b>잇는 조각이 모두 필요할 때만 쓴다</b> — 뒤 조각이 삭제 테스트를 못 넘으면 지운다(위).</li>
               <li><b>데이터를 끼워 만드는 문장은 조사를 받침에 맞춘다.</b> <code class="tok">{이름}는</code>처럼 고정하면
                 <code class="tok">미소분식는</code>이 나온다. 마지막 글자에 받침이 있으면 <code class="tok">은·이·을</code>, 없으면 <code class="tok">는·가·를</code> —
                 <code class="tok">(code − 0xAC00) % 28</code>이 0이 아니면 받침이다. 실측으로 잡힌 결함이다.</li>
@@ -2201,6 +2220,8 @@ setAmount(value.replace(/[^0-9]/g, ''))
 - <span class="no">NEVER</span> join label fragments with a dash. Not `다음 — 질문 세 개` but `질문 세 개 답하기`.
   A button is one action phrase. Not `대성식자재 — 식자재 대량 납품` but `대성식자재 · 식자재 대량 납품`.
 - Use the middle dot `·` for enumeration and qualification. Never `—`, `–`, or `--`.
+  Only when every fragment is needed: run the delete test on each fragment after a `·` and drop it, dot included,
+  if nothing is lost. Not `키퍼 AI 추천 · 지금 먼저 할 일` but `지금 먼저 할 일`; not `2번 전화했어요 · 아직 회신 전` but `2번 전화했어요`.
 - Sentences assembled from data must pick Korean particles by the final consonant of the inserted word. A fixed
   `{name}는` yields `미소분식는`. Final consonant present → `은·이·을`, absent → `는·가·를`; test with
   `(code - 0xAC00) % 28 !== 0`. This was caught by measurement, not by eye.
