@@ -615,6 +615,7 @@ footer.foot{
                 <b>같은 역할의 컴포넌트가 이미 있으면 그것을 쓴다</b> — 탭은 통화 목록의 탭, 목록 안 분류·정렬은 「전체 · 1주일 · 최신순」 선택기,
                 통화 행은 통화 이력의 행, 상세 상단은 거래처 상세의 상단이다(2026-09-19 「탭 스타일 왜 저거 써놨어? 통화목록에서 잘 쓰던 거 있잖아」).</li>
               <li><b>레이아웃·밀도 변경</b> — §2 네 패턴(목록형 · 상세형 · 오버레이형 · 대화형) 밖으로 나가지 않는다. 다섯째 패턴을 만들지 않는다.</li>
+              <li><b>목록 행에 행동을 붙일 때</b> — 버튼 · <code class="tok">⋮</code> · 펼침 · 길게 누르기를 넣기 전에 §2 목록형 「행동」을 먼저 본다. <b>행에 보이는 행동은 주 행동 하나까지다.</b></li>
               <li><b>통화 · To Do 상태</b> — 통화 내역 행 · 요약 카드 · To Do 에 상태 배지나 주 행동이 걸리면 §3 통화 라이프사이클을 그대로 쓴다. 새로 정하지 않는다.</li>
             </ul>
           </div>
@@ -774,6 +775,8 @@ footer.foot{
               <li><b>기기 글자 크기 1.3배 · 1.6배</b>에서 잘림 · 겹침 · 탭바 가림 0건 — 1배에서는 기본 디자인과 픽셀까지 같음(§1.4)</li>
               <li><b>카드 안 채운 상자 · 테두리 상자 · 다시 패딩한 상자 0개</b> — 통화 목록 행의 To Do 띠만 예외(§1.5)</li>
               <li><b>눌러도 반응 없는 컨트롤 0개</b> — 다른 경로(입력창의 답 등)로 바뀐 정렬 · 필터가 그 컨트롤 표시에도 반영됨(§1.9)</li>
+              <li><b>목록 행의 <code class="tok">⋮</code> · 「더보기」 버튼 0개</b> · 행 안 버튼 중 행 탭과 같은 곳으로 가는 것(「상세 ›」 등) 0개 · 행에 보이는 행동은 주 행동 하나(수단이 둘이면 전화 · 문자 한 묶음)(§2 목록형)</li>
+              <li><b>길게 누르기 메뉴의 항목이 전부 상세 화면에도 보임</b> — 길게 누르기로만 갈 수 있는 행동 0개. 스크린리더의 사용자 지정 동작에도 같은 항목이 있음(§2 목록형)</li>
               <li>화면에 남은 <b>테스트 입력 · 더미 문구 0개</b> — 시험하며 넣은 값(「아아아」 같은)이 대화 · 입력창에 남지 않음</li>
             </ul>
           </div>
@@ -840,7 +843,7 @@ footer.foot{
               <li><b>모바일의 오버레이는 둘이다 — 카드 모달과 풀스크린 시트.</b> 피그마 실측.
                 <b>카드 모달</b>은 OS 화면(통화 종료 · 잠금) 위에 뜨는 <b>한 장</b>이다: 대상(번호/이름 + 태그) → 질문 한 줄 + 부제 → 주 행동 하나 → 보조 하나 → 캡션.
                 닫기는 우상단 텍스트. <b>풀스크린 시트</b>는 내용이 긴 것(판단 근거) — 좌상단 <code class="tok">×</code>, 세로 스크롤, 안에 카드 모달을 다시 띄우지 않는다.
-                <b>바텀시트는 피그마에 없다.</b> 쓰지 않는다(OPEN-16). 모달 안 입력 폼 금지는 웹과 같다. <b>카드 모달이 「불가역 확인」 규칙의 예외인 이유</b>: 통화 종료 시점에는 앱 화면이 없다 — 카드가 유일한 표면이라 흐름을 끊는 것이 아니다. 앱 안에서는 여전히 불가역 확인에만 쓴다.</li>
+                <b>바텀시트는 피그마에 없다.</b> 쓰지 않는다(OPEN-16). <b>목록 행을 길게 눌러 뜨는 메뉴는 이 둘에 들지 않는다</b> — 내용을 담는 면이 아니라 OS 기본 메뉴이고 행동 이름만 담는다(§2 목록형 「행동」). 이 메뉴를 직접 그린 카드 · 시트로 흉내 내지 않는다. 모달 안 입력 폼 금지는 웹과 같다. <b>카드 모달이 「불가역 확인」 규칙의 예외인 이유</b>: 통화 종료 시점에는 앱 화면이 없다 — 카드가 유일한 표면이라 흐름을 끊는 것이 아니다. 앱 안에서는 여전히 불가역 확인에만 쓴다.</li>
 </ul>
               </div>
               <div class="dd-col dd-yes">
@@ -1378,7 +1381,9 @@ footer.foot{
               <li><b>hover가 없다.</b> 상태는 <b>pressed · 선택 · 비활성</b> 셋이다. pressed는 표면을 한 단계 어둡게(<code class="tok">#F3F4F6</code> → <code class="tok">#E5E7EB</code>),
                 채움 버튼은 <code class="tok">--navy-pressed</code>. <b>선택 상태</b>는 피그마에서 세그먼트 칩 <code class="tok">#28272F</code> 채움 + 흰 글자(14.77:1)와
                 탭 하단 <code class="tok">#00CC46</code> 2pt 선으로 실측됐다 — 진한 채움은 §1.6 「선택 상태에 Navy 채움 금지」와 충돌한다(OPEN-14).
-                <b>스와이프로 파괴 행동을 걸지 않는다</b> — 피그마에 없고, 되돌리기 5초(§1.1)만으로는 잘못 밀린 삭제를 다 못 잡는다. 롱프레스는 쓰지 않는다.</li>
+                <b>스와이프로 파괴 행동을 걸지 않는다</b> — 피그마에 없고, 되돌리기 5초(§1.1)만으로는 잘못 밀린 삭제를 다 못 잡는다.
+                <b>길게 누르기는 목록 행의 부행동 메뉴 한 가지 뜻으로만 쓴다</b> — 여러 개 고르기 모드 · 끌어서 순서 바꾸기 같은 다른 뜻을 같은 몸짓에 겹치지 않는다(§2 목록형 「행동」, 2026-10-08 개정).
+                누르는 동안은 pressed(<code class="tok">#E5E7EB</code>)이고, 메뉴가 뜨는 순간 진동 한 번. 누르는 시간은 OS 기본값을 쓴다 — 바꾸면 스크롤과 엉킨다.</li>
 </ul>
           </div>
         </article>
@@ -1739,7 +1744,11 @@ footer.foot{
             <li><span class="lbl">탭바</span><span>흰 면 <b>53pt</b>(인디케이터 여백 포함) · 4개가 상한(키퍼 AI · 최근기록 · 연락처 · 더보기, 2026-09-25 사용자 지시) — 다섯째 목적지는 더보기 안으로 · 활성 <code class="tok">#00CC46</code>(OPEN-13)</span></li>
             <li><span class="lbl">스크롤</span><span>길면 요소를 작게 줄이지 않고 <b>스크롤할 때 헤더를 접는다</b> — 상세형도 같다(2026-09-25 「스크롤 최소화」)</span></li>
             <li><span class="lbl">선택기</span><span>필터 · 정렬(전체 · 1주일 · 최신순)은 보이는 높이 44pt. 같은 목록 안의 분류(전체 · 거래처 · 잠재 거래처)도 이 선택기로 한다 — 탭 · 칩을 새로 만들지 않는다(2026-09-19 · 09-25 「누르기 어려울 정도로 너무 작아」)</span></li>
-            <li><span class="lbl">금지</span><span>가로 스크롤 카드 · 스와이프 삭제(§1.7) · 목록형에 하단 고정 CTA — 탭바와 겹친다</span></li>
+            <li><span class="lbl">행동</span><span>목록의 일은 훑고 고르는 것이다. <b>행이 보여 주는 행동은 그 목록에 들어온 이유가 되는 행동 하나까지다</b> — 할 일 목록이면 연락하기, 통화 내역이면 다시 걸기. 수단이 둘인 같은 행동(전화 · 문자)만 한 묶음으로 둘까지 둔다(대화형 추천 카드의 「문자 초안 보기」 + 전화와 같은 묶음). <b>행 탭은 상세 열기 한 뜻이다</b> — 행 안에 「상세 ›」 버튼을 따로 두지 않는다</span></li>
+            <li><span class="lbl">부행동</span><span>숨기기 · 다시 보이기 · 넘겨주기 · 고정 · 이름 바꾸기처럼 행을 관리하는 행동은 하루에 몇 번 쓰지 않는다. 모든 행에 그 자리를 그리면 드물게 쓰는 행동이 매일 쓰는 행동과 같은 무게로 보이고, 행마다 44pt 를 차지하고, 주 행동과 손가락 자리를 다툰다. 그래서 행에는 그리지 않고 두 곳에 둔다 — ① <b>상세 화면 헤더의 보조 하나</b>(<code class="tok">⋮</code>, §2 하단 고정 영역 「헤더는 뒤로 · 제목 · 보조 하나까지」) ② <b>목록 행 길게 누르기 메뉴</b>. ①이 정본 경로이고 ②는 아는 사람의 지름길이다</span></li>
+            <li><span class="lbl">길게 누르기</span><span>눈에 보이지 않는 몸짓이라 모르는 사장님은 평생 모른다. 그래서 <b>길게 누르기로만 할 수 있는 행동을 만들지 않는다</b> — 메뉴의 항목은 상세 화면에도 반드시 있다. 그러면 「길게 누르면 더 있어요」 같은 안내 문구도 필요 없다(§1.3 · §1.10). 메뉴에는 부행동만 담고 주 행동 · 상세 열기를 되풀이하지 않는다. <b>항목은 셋까지</b> — 넷째가 생기면 그 행동은 지름길이 아니라 상세 화면의 일이다(2026-10-08 정한 값). 되돌릴 수 있는 것(숨기기)은 바로 실행하고 되돌리기 토스트 5초(§1.1), 되돌릴 수 없는 것은 카드 모달 2버튼 확인(§1.2)을 거친다. 메뉴 모양은 OS 기본을 쓰고 직접 그리지 않는다 — 스택별 구현은 OPEN-20. 스크린리더에서는 길게 누르기를 못 쓰므로 같은 항목을 접근성 사용자 지정 동작으로 노출한다</span></li>
+            <li><span class="lbl">펼침</span><span><b>행을 눌러 그 자리에서 펼쳐 행동을 꺼내지 않는다</b> — 펼친 행은 숨은 층 하나를 더 만들고, 그 안에 <code class="tok">⋮</code>가 있으면 숨은 층이 둘이 된다(누르기 → 펼침 → <code class="tok">⋮</code> → 메뉴). 행에서 더 보여 줄 내용이 있으면 상세 화면이 맡는다 (2026-10-08 「사용자가 과연 주액션도 아닌 부액션까지 무리하게 리스트에서 다 보고 싶어할까?」)</span></li>
+            <li><span class="lbl">금지</span><span>가로 스크롤 카드 · 스와이프 삭제(§1.7) · 목록형에 하단 고정 CTA — 탭바와 겹친다 · 목록 행의 <code class="tok">⋮</code> · 「더보기」 버튼 · 행 안 펼침으로 꺼내는 행동 묶음 · 길게 누르기로만 갈 수 있는 행동</span></li>
             <li><span class="lbl">적용</span><span>통화 내역 · 연락처 · 거래처 목록</span></li>
           </ul>
         </article>
@@ -2276,7 +2285,14 @@ setAmount(value.replace(/[^0-9]/g, ''))
   there is <span class="no">no hover on touch</span>: rest → pressed (surface `#F3F4F6` → `#E5E7EB`; primary Navy →
   `#04161F`) → selected → disabled.
 - Never bind anything to hover. Selected: Figma fills segment chips `#28272F` (OPEN-14); tabs use a 2pt `#00CC46`
-  underline. No swipe-to-delete and no long-press actions.
+  underline. No swipe-to-delete.
+- List rows show at most ONE primary action (two only when it is the same action by two means: call · text).
+  Row tap = open detail; never add a "detail ›" button in the row. No `⋮` / more button in list rows, no
+  in-place expansion that reveals actions. Secondary actions (hide, unhide, hand over, pin, rename) live in the
+  detail header's single auxiliary `⋮`, and long-press on the row opens the SAME items as an OS-native menu —
+  a shortcut, never the only path. Max 3 items, no primary action or "open" in it. Reversible → run + 5s undo
+  toast; irreversible → card modal confirm. Long-press has this one meaning app-wide (no multi-select, no
+  drag-reorder). Expose the same items as accessibility custom actions. (§2 LIST, 2026-10-08)
 - Focus rings appear only for external keyboard / switch access, never on touch. Transition `background-color 120ms ease` — never layout properties.
 - <span class="no">DISTINGUISH</span> disabled from loading. Loading keeps the button's own background and adds a
   spinner; turning it grey mid-request looks broken.
@@ -2474,6 +2490,15 @@ setAmount(value.replace(/[^0-9]/g, ''))
           </div>
         </div>
 
+        <div class="open-item">
+          <div class="open-head"><h3><span class="open-no">OPEN-20</span>길게 누르기 메뉴의 스택별 구현</h3><span class="badge badge-hard">선택 필요</span></div>
+          <p>§2 목록형은 길게 누르기 메뉴를 <b>「OS 기본 메뉴」</b>로 정했다. iOS 는 컨텍스트 메뉴, Android 는 행에 붙는 팝업 메뉴가 기본이다. 앱이 React Native 면 기본 컴포넌트에 이 메뉴가 없어 라이브러리나 네이티브 모듈이 필요하다(OPEN-17). 직접 그린 메뉴로 대신하면 모양 · 위치 · 라운드 값을 이 문서에 새로 정해야 한다.</p>
+          <div class="choices">
+            <div class="choice"><b>①안 · OS 기본 메뉴 모듈 도입</b>각 OS 사용자가 이미 아는 모양이다. 이 문서에 값을 더 적지 않는다. 모듈 의존이 하나 는다.</div>
+            <div class="choice"><b>②안 · 직접 그린 메뉴</b>피그마에 먼저 그리고 라운드 · 행 높이 44pt · 그림자를 §1.5 에 적는다. 두 OS 에서 같은 모양이지만 그 OS 의 관습과 다르다.</div>
+          </div>
+        </div>
+
         </div>
       </div>
           <p>§1.3 · §2 밀도 규격은 앱 화면을 전제로 쓰였고 적용범위 한정이 없다. 그래서 문서 페이지는 지킬 방법이 없다. 같은 문제가 앞으로 랜딩·리포트 페이지마다 반복된다.</p>
@@ -2599,7 +2624,7 @@ setAmount(value.replace(/[^0-9]/g, ''))
 
       <footer class="foot">
         <span>Z to Sigma · 키퍼AI — Simplify 1.0 Mobile UX Bible (DRAFT)<br>docs/UX_GUIDE_MOBILE.md · 웹 편에서 분기</span>
-        <span>§7 미결 11건 · 결정 후 1.0 확정<br>선택 대기 7건 — OPEN-01 · 09 · 13 · 14 · 15 · 17 · 18 · 자료 대기 OPEN-16</span>
+        <span>§7 미결 12건 · 결정 후 1.0 확정<br>선택 대기 8건 — OPEN-01 · 09 · 13 · 14 · 15 · 17 · 18 · 20 · 자료 대기 OPEN-16</span>
       </footer>
     </section>
 
