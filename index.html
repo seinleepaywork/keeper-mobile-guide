@@ -2149,7 +2149,7 @@ setAmount(value.replace(/[^0-9]/g, ''))
   (`flex:1 1 14em; min-width:12em`) and let the siblings wrap. The badge-only guard from incident #02 never covered
   headings, so the same collapse came back there.
 - <span class="no">Put numbers and code labels inside the heading</span>, never beside it:
-  `<h3><span class="rule-no">1.9</span>Title</h3>`. As a sibling it either folds above the title (an eyebrow, forbidden
+  `&lt;h3&gt;&lt;span class="rule-no"&gt;1.9&lt;/span&gt;Title&lt;/h3&gt;`. As a sibling it either folds above the title (an eyebrow, forbidden
   by §1.10) or, once pinned with `nowrap`, squeezes it.
 - Measure portrait only, at <span class="no">402pt and 375pt</span>, plus the width where that container is
   actually narrowest. Two are not enough — a header that passed at both edges collapsed below 182px (web edition).
@@ -2321,7 +2321,7 @@ setAmount(value.replace(/[^0-9]/g, ''))
 - One stat cell holds <span class="no">one</span> value. Never `6건 합계 35,328,000원` in a single cell — the reader
   cannot tell which number is the point. Never mix kinds in one row (workload vs time estimate).
 - Every block in a column MUST share one `left` and one `right`. Verify by measurement, not by eye.
-- <span class="no">RESET `ol` TOO.</span> `<ol>` ships with `padding-inline-start: 40px`. Resetting only `ul`
+- <span class="no">RESET `ol` TOO.</span> `&lt;ol&gt;` ships with `padding-inline-start: 40px`. Resetting only `ul`
   pushes that one row 40px inward and produces a visible misalignment. Reset `ul,ol,dl,dd,figure,fieldset`.
 - Background <span class="no">fill is for the primary CTA only</span> — one per screen. A selected option or toggle
   with the same Navy fill reads as a second primary action. Selected state = `#F3F4F6` + Navy text + weight 500.
